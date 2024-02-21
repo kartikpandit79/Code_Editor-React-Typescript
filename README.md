@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+npm i localforage  to create indexed DB in browser s
+npm install --save-exact @monaco-editor/react@3.7.5 --legacy-peer-deps
+npm install  monaco-editor --legacy-peer-deps // type script def file
+npm install  @types/prettier@2 --legacy-peer-deps
+npm i prettier@2.2.1 --legacy-peer-deps
+npm i bulmaswatch --legacy-peer-deps
+npm install --save-exact react-resizable@3.0.4 @types/react-resizable@3.0.2 --legacy-peer-deps
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+import React from "react"
+import ReactDOM from "react-dom"
 
-## Available Scripts
+const App = () => <div>Hello Bro</div>
 
-In the project directory, you can run:
+ReactDOM.render(
+<App/>, document.querySelector("#root")
+)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+import * as esbuild from 'esbuild-wasm';
+ 
+export const unpkgPathPlugin = () => {
+  return {
+    name: 'unpkg-path-plugin',
+    setup(build: esbuild.PluginBuild) {
+      build.onResolve({ filter: /.*/ }, async (args: any) => {
+        console.log('onResole', args);
+        return { path: args.path, namespace: 'a' };
+      });
+ 
+      build.onLoad({ filter: /.*/ }, async (args: any) => {
+        console.log('onLoad', args);
+ 
+        if (args.path === 'index.js') {
+          return {
+            loader: 'jsx',
+            contents: `
+              import message from './message';
+              console.log(message);
+            `,
+          };
+        } else {
+          return {
+            loader: 'jsx',
+            contents: 'export default "hi there!"',
+          };
+        }
+      });
+    },
+  };
+};
