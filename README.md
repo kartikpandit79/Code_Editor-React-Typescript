@@ -5,6 +5,10 @@ npm install  @types/prettier@2 --legacy-peer-deps
 npm i prettier@2.2.1 --legacy-peer-deps
 npm i bulmaswatch --legacy-peer-deps
 npm install --save-exact react-resizable@3.0.4 @types/react-resizable@3.0.2 --legacy-peer-deps
+npm i --save-exact @uiw/react-md-editor@2.1.1
+npm install --save-exact react-redux redux @types/react-redux redux-thunk --legacy-peer-deps
+npm i immer --legacy-peer-deps
+
 
 import React from "react"
 import ReactDOM from "react-dom"
@@ -51,3 +55,15 @@ export const unpkgPathPlugin = () => {
     },
   };
 };
+
+
+  } catch (err) {
+    if (err instanceof Error) {
+      return {
+        code: "",
+        err: err.message,
+      };
+    } else {
+      throw err;
+    }
+  }

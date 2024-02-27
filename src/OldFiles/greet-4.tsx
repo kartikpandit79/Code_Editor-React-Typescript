@@ -51,7 +51,7 @@ const Greet = () => {
             <div>
                 <button onClick={onClickEvent}>Submit</button>
             </div>
-            <Preview code={code} />
+            <Preview code={code} err={"fasdfjd"} />
         </div>
     )
 }

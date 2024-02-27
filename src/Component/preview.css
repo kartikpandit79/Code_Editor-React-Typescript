@@ -13,3 +13,10 @@
     opacity: 0;
     position: absolute;
 }
+
+.preview-error {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: red
+}
